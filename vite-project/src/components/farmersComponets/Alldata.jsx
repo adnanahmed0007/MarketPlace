@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import img from "./HD-wallpaper-farmers-agriculture-field-harvesting-farm-farmer-hard-working-workers-cultivation.jpg";
 import {
   Package,
   MapPin,
@@ -43,44 +42,38 @@ const Alldata = () => {
   }
 
   return (
-    <div
-      className="relative min-h-screen bg-cover bg-center flex items-center justify-center p-6"
-      style={{ backgroundImage: `url(${img})` }}
-    >
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-
-      <div className="relative z-10 w-full max-w-7xl bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/40">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-12 px-6">
+      <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent mb-3">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent mb-4">
             Fresh Crops Marketplace
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-lg text-gray-600">
             Directly sourced from verified farmers
           </p>
         </div>
 
-        {/* Fetch Button */}
-        <div className="flex justify-center mb-8">
+        {/* Button Card */}
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 mb-10 border border-white/50 text-center">
           <button
             onClick={handleClick}
             disabled={loading}
-            className="group bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 font-semibold text-lg disabled:opacity-60"
+            className="group bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 font-semibold text-lg disabled:opacity-60"
           >
-            <span className="flex items-center gap-2">
-              <Leaf className="w-5 h-5 group-hover:rotate-12 transition" />
+            <span className="flex items-center gap-2 justify-center">
+              <Leaf className={`w-5 h-5 ${loading ? "animate-pulse" : "group-hover:rotate-12 transition"}`} />
               {loading ? "Fetching Crops..." : "View All Crops"}
             </span>
           </button>
         </div>
 
-        {/* Error */}
+        {/* Error Message */}
         {error && (
-          <p className="text-center text-red-600 font-semibold mb-6">
-            {error}
-          </p>
+          <div className="text-center mb-8">
+            <p className="text-red-600 font-semibold">{error}</p>
+          </div>
         )}
 
         {/* Crop Cards */}
@@ -89,7 +82,7 @@ const Alldata = () => {
             {array.map((value) => (
               <div
                 key={value._id}
-                className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+                className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg p-6 border border-white/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
               >
                 <h2 className="text-2xl font-bold text-emerald-800 mb-4 flex items-center gap-2">
                   <Package className="w-5 h-5 text-emerald-600" />
@@ -98,30 +91,30 @@ const Alldata = () => {
 
                 <div className="space-y-3 text-gray-700">
 
-                  <p className="flex items-center gap-2">
+                  <div className="flex items-center gap-2">
                     <Weight className="w-4 h-4 text-teal-600" />
                     <span className="font-medium">
                       {value.cropQuantity} kg
                     </span>
-                  </p>
+                  </div>
 
-                  <p className="flex items-center gap-2">
+                  <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-blue-600" />
                     {value.Pickup_Location}
-                  </p>
+                  </div>
 
-                  <p className="flex items-center gap-2">
+                  <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-cyan-600" />
                     {value.phoneNumber}
-                  </p>
+                  </div>
 
-                  <p className="flex items-center gap-2 text-lg font-bold text-emerald-700">
+                  <div className="flex items-center gap-2 text-lg font-bold text-emerald-700">
                     <IndianRupee className="w-5 h-5" />
                     ₹{value.cropPrice}
-                  </p>
+                  </div>
                 </div>
 
-                <button className="mt-6 w-full bg-emerald-600 text-white py-2.5 rounded-lg hover:bg-emerald-700 transition font-semibold">
+                <button className="mt-6 w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-2.5 rounded-xl font-semibold hover:shadow-lg hover:scale-[1.03] transition-all duration-300">
                   Contact Farmer
                 </button>
               </div>
@@ -130,7 +123,7 @@ const Alldata = () => {
         ) : (
           fetched &&
           !loading && (
-            <div className="text-center mt-8">
+            <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 text-center border border-white/50">
               <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-500 text-lg">
                 No crop data available at the moment.
@@ -138,6 +131,7 @@ const Alldata = () => {
             </div>
           )
         )}
+
       </div>
     </div>
   );
