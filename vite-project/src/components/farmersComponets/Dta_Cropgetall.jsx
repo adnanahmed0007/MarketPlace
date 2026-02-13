@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import img from "./HD-wallpaper-farmers-agriculture-field-harvesting-farm-farmer-hard-working-workers-cultivation.jpg";
 import {
   Package,
   MapPin,
@@ -15,7 +14,6 @@ const Dta_Cropgetall = () => {
   const [array, setArray] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Fetch Crops
   async function handleFetch() {
     try {
       setLoading(true);
@@ -36,7 +34,6 @@ const Dta_Cropgetall = () => {
     }
   }
 
-  // Delete Crop
   async function handleDelete(id) {
     try {
       const response = await axios.delete(
@@ -49,38 +46,32 @@ const Dta_Cropgetall = () => {
         handleFetch();
       }
     } catch (e) {
-      alert("Failed to delete crop");
+      alert("Failed to delete crop " + e);
     }
   }
 
   return (
-    <div
-      className="relative min-h-screen bg-cover bg-center flex items-center justify-center p-6"
-      style={{ backgroundImage: `url(${img})` }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-
-      <div className="relative z-10 w-full max-w-7xl bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/40">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-12 px-6">
+      <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent mb-3">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent mb-4">
             Seller Crop Dashboard
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-lg text-gray-600">
             Manage and monitor your listed crops
           </p>
         </div>
 
-        {/* Fetch Button */}
-        <div className="flex justify-center mb-10">
+        {/* Fetch Button Card */}
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 mb-10 border border-white/50 text-center">
           <button
             onClick={handleFetch}
             disabled={loading}
-            className="group bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 font-semibold text-lg disabled:opacity-60"
+            className="group bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 font-semibold text-lg disabled:opacity-60"
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 justify-center">
               <RefreshCw
                 className={`w-5 h-5 ${loading ? "animate-spin" : "group-hover:rotate-180 transition"
                   }`}
@@ -90,41 +81,38 @@ const Dta_Cropgetall = () => {
           </button>
         </div>
 
-        {/* Crop Rows */}
-        <div className="space-y-6">
-
-          {array.length > 0 ? (
-            array.map((value) => (
+        {/* Crop Cards */}
+        {array.length > 0 ? (
+          <div className="space-y-6">
+            {array.map((value) => (
               <div
                 key={value._id}
-                className="bg-white rounded-2xl shadow-xl border border-gray-200 px-8 py-6 flex items-center justify-between hover:shadow-2xl transition duration-300"
+                className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6 hover:shadow-2xl transition-all duration-300"
               >
-                {/* Left Section - Single Horizontal Row */}
-                <div className="flex items-center gap-16 w-full">
+                {/* Crop Info */}
+                <div className="grid md:grid-cols-5 gap-6 w-full text-gray-700">
 
-                  <div className="flex items-center gap-2 min-w-[150px]">
+                  <div className="flex items-center gap-2">
                     <Package className="w-5 h-5 text-emerald-600" />
-                    <span className="font-semibold">
-                      {value.cropName}
-                    </span>
+                    <span className="font-semibold">{value.cropName}</span>
                   </div>
 
-                  <div className="flex items-center gap-2 min-w-[120px]">
+                  <div className="flex items-center gap-2">
                     <Weight className="w-5 h-5 text-teal-600" />
                     <span>{value.cropQuantity} kg</span>
                   </div>
 
-                  <div className="flex items-center gap-2 min-w-[160px]">
+                  <div className="flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-blue-600" />
                     <span>{value.Pickup_Location}</span>
                   </div>
 
-                  <div className="flex items-center gap-2 min-w-[160px]">
+                  <div className="flex items-center gap-2">
                     <Phone className="w-5 h-5 text-cyan-600" />
                     <span>{value.phoneNumber}</span>
                   </div>
 
-                  <div className="flex items-center gap-2 min-w-[100px] font-bold text-emerald-700">
+                  <div className="flex items-center gap-2 font-bold text-emerald-700">
                     <IndianRupee className="w-5 h-5" />
                     <span>{value.cropPrice}</span>
                   </div>
@@ -133,27 +121,34 @@ const Dta_Cropgetall = () => {
                 {/* Delete Button */}
                 <button
                   onClick={() => handleDelete(value._id)}
-                  className="bg-red-600 text-white px-5 py-2 rounded-lg shadow hover:bg-red-700 hover:scale-105 transition flex items-center gap-2"
+                  className="bg-gradient-to-r from-red-600 to-rose-600 text-white px-6 py-2 rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2"
                 >
                   <Trash2 className="w-4 h-4" />
                   Delete
                 </button>
               </div>
-            ))
-          ) : (
-            <div className="text-center py-10 text-gray-500">
-              No crop data available. Click "Fetch Selling Crops".
-            </div>
-          )}
-        </div>
+            ))}
 
-        {/* Total Counter */}
-        {array.length > 0 && (
-          <div className="mt-8 text-center text-gray-700 font-semibold">
-            Total Crops Listed:{" "}
-            <span className="text-emerald-700">{array.length}</span>
+            {/* Total Counter */}
+            <div className="text-center mt-8 text-gray-700 font-semibold">
+              Total Crops Listed:{" "}
+              <span className="text-emerald-700">
+                {array.length}
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 text-center border border-white/50">
+            <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-gray-700 mb-2">
+              No Crops Found
+            </h3>
+            <p className="text-gray-500">
+              Click "Fetch Selling Crops" to load your listings
+            </p>
           </div>
         )}
+
       </div>
     </div>
   );
