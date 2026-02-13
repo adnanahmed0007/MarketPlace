@@ -29,18 +29,29 @@ const Logout = () => {
     }
 
     return (
-        <div
-            className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-12 px-6"
-        >
-            <div className="flex justify-center items-center h-screen">
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex items-center justify-center px-6">
+
+            <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 border border-white/50 text-center max-w-md w-full">
+
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent mb-6">
+                    Farmer Logout
+                </h2>
+
+                <p className="text-gray-600 mb-8">
+                    Are you sure you want to logout from your account?
+                </p>
+
                 <button
                     onClick={handleClick}
-                    className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg text-xl transition-all"
+                    className="w-full bg-gradient-to-r from-red-600 to-rose-600 text-white py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300"
                 >
-                    🌾 Farmer Logging Out 🌾
+                    🌾 Logout Now
                 </button>
+
             </div>
+
         </div>
+
     );
 };
 
