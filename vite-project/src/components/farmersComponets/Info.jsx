@@ -8,7 +8,7 @@ import {
   FaBirthdayCake,
   FaTimes,
 } from "react-icons/fa";
-import img from "./HD-wallpaper-farmers-agriculture-field-harvesting-farm-farmer-hard-working-workers-cultivation.jpg";
+
 
 const Info = () => {
   const [userData, setUserData] = useState(null);
@@ -44,23 +44,21 @@ const Info = () => {
   }, []);
 
   return (
-    <div
-      className="bg-cover bg-center bg-no-repeat min-h-screen flex items-center justify-center p-4"
-      style={{ backgroundImage: `url(${img})` }}
-    >
-      <div className="bg-white bg-opacity-10 backdrop-blur-lg text-white rounded-2xl shadow-2xl p-8 w-96 relative border border-white/20">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6">
+
+      <div className="relative w-full max-w-md rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl p-8 text-white">
 
         {/* Close Button */}
         <button
           onClick={() => setUserData(null)}
-          className="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition"
+          className="absolute top-5 right-5 text-gray-300 hover:text-red-500 transition duration-300"
         >
-          <FaTimes size={20} />
+          <FaTimes size={18} />
         </button>
 
         {/* Loading */}
         {loading && (
-          <p className="text-center text-green-300 font-semibold">
+          <p className="text-center text-green-400 font-semibold animate-pulse">
             Loading profile...
           </p>
         )}
@@ -74,41 +72,34 @@ const Info = () => {
 
         {/* User Info */}
         {!loading && userData && (
-          <div>
-            <h2 className="text-3xl font-bold text-green-400 mb-6 text-center">
-              👤 Seller Profile
-            </h2>
-
-            <div className="space-y-5 text-lg">
-              <div className="flex items-center">
-                <FaUser className="text-green-400 mr-4" />
-                <span>{userData.fullName || "N/A"}</span>
+          <>
+            {/* Profile Header */}
+            <div className="flex flex-col items-center mb-8">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-green-400 to-emerald-600 flex items-center justify-center text-3xl font-bold shadow-lg">
+                {userData.fullName?.charAt(0) || "U"}
               </div>
 
-              <div className="flex items-center">
-                <FaBirthdayCake className="text-yellow-400 mr-4" />
-                <span>{userData.age || "N/A"} years</span>
-              </div>
-
-              <div className="flex items-center">
-                <FaPhone className="text-blue-400 mr-4" />
-                <span>{userData.phoneNumber || "N/A"}</span>
-              </div>
-
-              <div className="flex items-center">
-                <FaEnvelope className="text-pink-400 mr-4" />
-                <span>{userData.email || "N/A"}</span>
-              </div>
-
-              <div className="flex items-center">
-                <FaHome className="text-purple-400 mr-4" />
-                <span>{userData.address || "N/A"}</span>
-              </div>
+              <h2 className="mt-4 text-2xl font-bold tracking-wide">
+                {userData.fullName}
+              </h2>
+              <p className="text-gray-300 text-sm">
+                Seller Account
+              </p>
             </div>
-          </div>
+
+            {/* Info Section */}
+            <div className="space-y-4 text-base">
+
+              <InfoItem icon={<FaBirthdayCake />} value={`${userData.age || "N/A"} years`} />
+              <InfoItem icon={<FaPhone />} value={userData.phoneNumber || "N/A"} />
+              <InfoItem icon={<FaEnvelope />} value={userData.email || "N/A"} />
+              <InfoItem icon={<FaHome />} value={userData.address || "N/A"} />
+
+            </div>
+          </>
         )}
 
-        {/* If no data */}
+        {/* No Data */}
         {!loading && !userData && !error && (
           <p className="text-center text-gray-300">
             No user data available.
@@ -117,6 +108,18 @@ const Info = () => {
       </div>
     </div>
   );
+
 };
+
+
+const InfoItem = ({ icon, value }) => (
+  <div className="flex items-center gap-4 bg-white/5 hover:bg-white/10 transition duration-300 p-4 rounded-xl border border-white/10">
+    <div className="text-green-400 text-lg">
+      {icon}
+    </div>
+    <span className="text-gray-200">{value}</span>
+  </div>
+);
+
 
 export default Info;

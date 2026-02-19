@@ -1,124 +1,153 @@
- 
- import React, { useState } from 'react';
- import axios from "axios";
- import img from "./HD-wallpaper-farmers-agriculture-field-harvesting-farm-farmer-hard-working-workers-cultivation.jpg";
- 
- const BuyersBid = () => {
-   const [cropName, setCropName] = useState("");
-   const [cropQuantity, setCropQuantity] = useState(0);
-   const [Location_Buyer, setLocationBuyer] = useState("");
-   const [cropPrice, SetCropPrice] = useState(0);
-   const [getdata, setdata] = useState([]);
- 
-   async function handleSubmit(e) {
-     e.preventDefault();
-     try {
-       if (cropName && cropQuantity && Location_Buyer && cropPrice) {
-         const response = await axios.post("http://localhost:9808/api/buy/buyer/bid", {
-           cropName, cropPrice, cropQuantity, Location_Buyer
-         }, { withCredentials: true });
-         if(response&&response.status==200)
-         {
+
+import React, { useState } from 'react';
+import axios from "axios";
+
+import {
+  Package,
+  Weight,
+  MapPin,
+  IndianRupee,
+  Gavel,
+} from "lucide-react";
+
+
+const BuyersBid = () => {
+  const [cropName, setCropName] = useState("");
+  const [cropQuantity, setCropQuantity] = useState(0);
+  const [Location_Buyer, setLocationBuyer] = useState("");
+  const [cropPrice, SetCropPrice] = useState(0);
+  const [getdata, setdata] = useState([]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      if (cropName && cropQuantity && Location_Buyer && cropPrice) {
+        const response = await axios.post("http://localhost:9808/api/buy/buyer/bid", {
+          cropName, cropPrice, cropQuantity, Location_Buyer
+        }, { withCredentials: true });
+        if (response && response.status == 200) {
           alert("we place your bid")
           console.log(response.data.chcek);
           setdata(response.data.chcek);
-         }
-          
-         
-       } else {
-         alert("write all the detills");
-       }
-     } catch (e) {
-       if (e.response && e.response.status === 400) {
-         alert("something went wrogn");
-       }
-       console.log(e);
-     }
-   }
- 
-   return (
-     <div
-       className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center px-4 py-10"
-       style={{ backgroundImage: `url(${img})` }}
-     >
-       <form onSubmit={handleSubmit} className="bg-gray shadow-lg rounded-2xl p-8 w-full max-w-md space-y-6">
-         <h2 className="text-2xl font-semibold text-center text-gray-700">Place Your Bid</h2>
- 
-         <div>
-           <label htmlFor="cropName" className="block text-gray-900 font-medium">Crop Name:</label>
-           <input
-             onChange={(e) => setCropName(e.target.value)}
-             placeholder='enter the cropname'
-             type="text"
-             id="cropName"
-             name="cropName"
-             required
-             className="mt-1 block w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-           />
-         </div>
- 
-         <div>
-           <label htmlFor="cropQuantity" className="block text-gray-900 font-medium">Crop Quantity (kg):</label>
-           <input
-             onChange={(e) => setCropQuantity(e.target.value)}
-             placeholder='enter the cropquantity'
-             type="number"
-             id="cropQuantity"
-             name="cropQuantity"
-             required
-             className="mt-1 block w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-           />
-         </div>
- 
-         <div>
-           <label htmlFor="Location_Buyer" className="block text-gray-900 font-medium">Location (Buyer):</label>
-           <input
-             onChange={(e) => setLocationBuyer(e.target.value)}
-             placeholder='enter your location'
-             type="text"
-             id="Location_Buyer"
-             name="Location_Buyer"
-             required
-             className="mt-1 block w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-           />
-         </div>
- 
-         <div>
-           <label htmlFor="cropPrice" className="block text-gray-900 font-medium">Crop Price (₹):</label>
-           <input
-             onChange={(e) => SetCropPrice(e.target.value)}
-             placeholder='enter the cropprice'
-             type="number"
-             id="cropPrice"
-             name="cropPrice"
-             step="0.01"
-             required
-             className="mt-1 block w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-           />
-         </div>
- 
-         <button
-           type="submit"
-           className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-xl transition duration-200"
-         >
-           Submit
-         </button>
-       </form>
- 
-       <div className="mt-6 w-full max-w-md bg-white shadow-md rounded-xl p-4">
-         {getdata &&  
-           <div  className="space-y-1 text-gray-700 mb-4">
-             <p><strong>Crop Name:</strong> {getdata.cropName}</p>
-             <p><strong>Crop Price:</strong> ₹{getdata.cropPrice}</p>
-             <p><strong>Crop Quantity:</strong> {getdata.cropQuantity} kg</p>
-             <p><strong>Location:</strong> {getdata.Location_Buyer}</p>
-             <p><strong>Phone:</strong> {getdata.phoneNumber}</p>
-           </div>
-         }
-       </div>
-     </div>
-   );
- };
- 
- export default BuyersBid;
- 
+        }
+
+
+      } else {
+        alert("write all the detills");
+      }
+    } catch (e) {
+      if (e.response && e.response.status === 400) {
+        alert("something went wrogn");
+      }
+      console.log(e);
+    }
+  }
+
+  return (
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6 overflow-hidden">
+
+      <div className="w-full max-w-2xl">
+
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent mb-3">
+            Place Your Crop Bid
+          </h2>
+          <p className="text-gray-600 text-lg">
+            Submit your buying offer to farmers
+          </p>
+        </div>
+
+        {/* Form Card */}
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 border border-white/50">
+          <form onSubmit={handleSubmit} className="space-y-6">
+
+            {/* Crop Name */}
+            <div className="relative group">
+              <Package className="absolute left-4 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600" />
+              <input
+                type="text"
+                placeholder="Enter crop name"
+                value={cropName}
+                onChange={(e) => setCropName(e.target.value)}
+                required
+                className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+              />
+            </div>
+
+            {/* Quantity */}
+            <div className="relative group">
+              <Weight className="absolute left-4 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600" />
+              <input
+                type="number"
+                placeholder="Enter quantity (kg)"
+                value={cropQuantity}
+                onChange={(e) => setCropQuantity(e.target.value)}
+                required
+                className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+              />
+            </div>
+
+            {/* Location */}
+            <div className="relative group">
+              <MapPin className="absolute left-4 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600" />
+              <input
+                type="text"
+                placeholder="Enter your location"
+                value={Location_Buyer}
+                onChange={(e) => setLocationBuyer(e.target.value)}
+                required
+                className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+              />
+            </div>
+
+            {/* Price */}
+            <div className="relative group">
+              <IndianRupee className="absolute left-4 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600" />
+              <input
+                type="number"
+                placeholder="Enter your bid price"
+                value={cropPrice}
+                onChange={(e) => SetCropPrice(e.target.value)}
+                required
+                className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+              />
+            </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-3.5 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+            >
+              <Gavel className="w-5 h-5" />
+              Submit Bid
+            </button>
+
+          </form>
+        </div>
+
+        {/* Result Card */}
+        {getdata && (
+          <div className="mt-8 bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-6 border border-white/50">
+            <h3 className="text-xl font-bold text-emerald-700 mb-4">
+              Bid Confirmation
+            </h3>
+
+            <div className="space-y-2 text-gray-700">
+              <p><strong>Crop:</strong> {getdata.cropName}</p>
+              <p><strong>Quantity:</strong> {getdata.cropQuantity} kg</p>
+              <p><strong>Price:</strong> ₹{getdata.cropPrice}</p>
+              <p><strong>Location:</strong> {getdata.Location_Buyer}</p>
+              <p><strong>Phone:</strong> {getdata.phoneNumber}</p>
+            </div>
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
+
+};
+
+export default BuyersBid;
+

@@ -4,7 +4,8 @@ import { Sprout, TrendingUp, Shield, Users, ArrowRight, Leaf } from 'lucide-reac
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br  from-slate-900 via-gray-900 to-black p-6 overflow-hidden">
+
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         {/* Animated background elements */}

@@ -37,7 +37,7 @@ const FarmerAboutGet = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center px-4">
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6 overflow-hidden">
       <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-3xl p-8 max-w-md w-full border border-green-200">
 
         {/* Loading State */}

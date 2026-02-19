@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   FaUser,
@@ -8,89 +8,115 @@ import {
   FaBirthdayCake,
   FaTimes,
 } from "react-icons/fa";
-import img from "./HD-wallpaper-farmers-agriculture-field-harvesting-farm-farmer-hard-working-workers-cultivation.jpg"
- 
-const Buyersinfo = () => {
-  const [buyerData, setBuyerData] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-   
-  async function handleClick() {
-    try {
-      const response = await axios.get("http://localhost:9808/api/buy/buyer/info", {
-        withCredentials: true,
-      });
 
-      if (response) {
-        setBuyerData(response.data.user);
-        setIsOpen(true); // Show sidebar
+const Buyersinfo = () => {
+  const [buyerData, setBuyerData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function fetchBuyerData() {
+      try {
+        setLoading(true);
+
+        const response = await axios.get(
+          "http://localhost:9808/api/buy/buyer/info",
+          { withCredentials: true }
+        );
+
+        if (response.status === 200) {
+          setBuyerData(response.data.user);
+        }
+      } catch (e) {
+        if (e.response?.status === 400) {
+          setError("Session expired. Please login again.");
+        } else {
+          setError("Failed to load buyer data.");
+        }
+        console.error("Error fetching buyer data:", e);
+      } finally {
+        setLoading(false);
       }
-    } catch (e) {
-      if (e.response && e.response.status === 400) {
-        alert("Cookies are expired. Please re-login.");
-      }
-      console.log("Error:", e);
     }
-  }
+
+    fetchBuyerData();
+  }, []);
 
   return (
-    <div
-           className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center px-4 py-10"
-           style={{ backgroundImage: `url(${img})` }}
-         >
-    <div className="min-h-screen flex items-center justify-center  ">
-      <button
-        onClick={handleClick}
-        className="px-6 py-3 bg-gradient-to-r from-green-500 to-lime-500 text-white font-semibold rounded-xl shadow-lg hover:opacity-90 transition"
-      >
-        View Buyer Info
-      </button>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6">
 
-      {/* Sidebar */}
-      <div
-        className={`fixed top-20 right-10 bg-gray-900 text-white rounded-2xl shadow-2xl p-6 w-80 z-50 ${
-          isOpen ? "block" : "hidden"
-        }`}
-      >
+      <div className="relative w-full max-w-md rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl p-8 text-white">
+
+        {/* Close Button */}
         <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-3 right-3 text-gray-400 hover:text-red-500"
+          onClick={() => setBuyerData(null)}
+          className="absolute top-5 right-5 text-gray-300 hover:text-red-500 transition duration-300"
         >
-          <FaTimes size={22} />
+          <FaTimes size={18} />
         </button>
 
-        <h2 className="text-2xl font-bold text-green-400 mb-6">Buyer Profile</h2>
+        {/* Loading */}
+        {loading && (
+          <p className="text-center text-green-400 font-semibold animate-pulse">
+            Loading profile...
+          </p>
+        )}
 
-        <div className="space-y-5">
-          <div className="flex items-center">
-            <FaUser className="text-green-400 mr-3" />
-            <span>{buyerData.fullName || "N/A"}</span>
-          </div>
+        {/* Error */}
+        {error && (
+          <p className="text-center text-red-400 font-semibold">
+            {error}
+          </p>
+        )}
 
-          <div className="flex items-center">
-            <FaBirthdayCake className="text-yellow-400 mr-3" />
-            <span>{buyerData.age || "N/A"}</span>
-          </div>
+        {/* Buyer Info */}
+        {!loading && buyerData && (
+          <>
+            {/* Profile Header */}
+            <div className="flex flex-col items-center mb-8">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-emerald-400 to-teal-600 flex items-center justify-center text-3xl font-bold shadow-lg">
+                {buyerData.fullName?.charAt(0) || "B"}
+              </div>
 
-          <div className="flex items-center">
-            <FaPhone className="text-blue-400 mr-3" />
-            <span>{buyerData.phoneNumber || "N/A"}</span>
-          </div>
+              <h2 className="mt-4 text-2xl font-bold tracking-wide">
+                {buyerData.fullName}
+              </h2>
+              <p className="text-gray-300 text-sm">
+                Buyer Account
+              </p>
+            </div>
 
-          <div className="flex items-center">
-            <FaEnvelope className="text-pink-400 mr-3" />
-            <span>{buyerData.email || "N/A"}</span>
-          </div>
+            {/* Info Section */}
+            <div className="space-y-4 text-base">
 
-          <div className="flex items-center">
-            <FaHome className="text-purple-400 mr-3" />
-            <span>{buyerData.address || "N/A"}</span>
-          </div>
-        </div>
+              <InfoItem icon={<FaBirthdayCake />} value={`${buyerData.age || "N/A"} years`} />
+              <InfoItem icon={<FaPhone />} value={buyerData.phoneNumber || "N/A"} />
+              <InfoItem icon={<FaEnvelope />} value={buyerData.email || "N/A"} />
+              <InfoItem icon={<FaHome />} value={buyerData.address || "N/A"} />
+
+            </div>
+          </>
+        )}
+
+        {/* No Data */}
+        {!loading && !buyerData && !error && (
+          <p className="text-center text-gray-300">
+            No buyer data available.
+          </p>
+        )}
       </div>
     </div>
-    </div>
-    
   );
 };
+
+
+const InfoItem = ({ icon, value }) => (
+  <div className="flex items-center gap-4 bg-white/5 hover:bg-white/10 transition duration-300 p-4 rounded-xl border border-white/10">
+    <div className="text-emerald-400 text-lg">
+      {icon}
+    </div>
+    <span className="text-gray-200">{value}</span>
+  </div>
+);
 
 export default Buyersinfo;

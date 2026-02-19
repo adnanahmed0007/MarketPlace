@@ -21,15 +21,14 @@ const BuyerBidsCropqisename = () => {
         setCropArray(response.data.findALLBUyercrop);
       }
     } catch (e) {
-        if(e.response&&e.response.status==400)
-        {
-         
-            alert(e.response.data.message)
-        
-        }
-        else{
-            alert("cookies expires re login ")
-        }
+      if (e.response && e.response.status == 400) {
+
+        alert(e.response.data.message)
+
+      }
+      else {
+        alert("cookies expires re login ")
+      }
       console.log(e);
     }
   }

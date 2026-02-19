@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import axios from "axios";
 import Mycontext from "../farmersComponets/Context";
 import { Link } from "react-router-dom";
-import img from "./HD-wallpaper-farmers-agriculture-field-harvesting-farm-farmer-hard-working-workers-cultivation.jpg";
+import { User, Mail, Phone, MapPin, Calendar, Lock, ArrowRight } from 'lucide-react';
+
 
 const Loginbuyers = () => {
   const { email, Setemail, password, setPassword } = useContext(Mycontext);
@@ -29,60 +30,89 @@ const Loginbuyers = () => {
   }
 
   return (
-    <div
-      className="bg-cover bg-center bg-no-repeat flex flex-col md:flex-row items-center justify-center h-screen p-4"
-      style={{ backgroundImage: `url(${img})` }}
-    >
-      <div className="w-full max-w-md p-8  bg-opacity-90 rounded-xl shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-green-400 mb-6">
-          🛒 Welcome Back, Buyer!
-        </h2>
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6 overflow-hidden">
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <input
-            type="email"
-            placeholder="📧 Enter your Email"
-            onChange={(e) => Setemail(e.target.value)}
-            className="w-full p-3 border border-green-400 rounded-lg bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-300"
-            required
-          />
-          <input
-            type="password"
-            placeholder="🔑 Enter your Password"
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 border border-green-400 rounded-lg bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-300"
-            required
-          />
-          <button
-            type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded-lg font-semibold transition"
-          >
-            Login 🧺
-          </button>
-        </form>
+      {/* Floating Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-200 rounded-full mix-blend-multiply blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-teal-200 rounded-full mix-blend-multiply blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      </div>
 
-        <div className="mt-5 text-center">
-          <p className="text-gray-300 text-lg">New to the marketplace?</p>
+      <div className="relative max-w-md w-full animate-fade-in-up">
+
+        {/* Card */}
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/50">
+
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl mb-4 shadow-lg">
+              🛒
+            </div>
+
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">
+              Welcome Back, Buyer
+            </h2>
+
+            <p className="text-gray-600 mt-2">
+              Login to continue shopping fresh produce
+            </p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-5">
+
+            <input
+              type="email"
+              placeholder="Enter your Email"
+              onChange={(e) => Setemail(e.target.value)}
+              className="w-full px-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all duration-300 text-gray-800 placeholder-gray-400"
+              required
+            />
+
+            <input
+              type="password"
+              placeholder="Enter your Password"
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all duration-300 text-gray-800 placeholder-gray-400"
+              required
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transform transition-all duration-300"
+            >
+              Login to Account 🚀
+            </button>
+          </form>
+
+          {/* Divider */}
+          <div className="flex items-center my-6">
+            <div className="flex-1 border-t border-gray-300"></div>
+            <span className="px-4 text-sm text-gray-500">New here?</span>
+            <div className="flex-1 border-t border-gray-300"></div>
+          </div>
+
+          {/* Signup Link */}
           <Link
             to="/signupbuyers"
-            className="mt-2 inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-yellow-600 transition"
+            className="block w-full text-center px-6 py-3.5 bg-white border-2 border-emerald-600 text-emerald-700 rounded-xl font-semibold hover:bg-emerald-50 transition-all duration-300"
           >
-            Sign Up 🌱
+            Create Buyer Account 🌱
           </Link>
-        </div>
 
-        {/* Sliding message */}
-        <div
-          id="welcome-message"
-          className="mt-6 p-4 bg-green-100 text-green-900 text-center rounded-lg shadow-md animate-slide-in-right"
-        >
-          <h1 className="text-lg font-semibold">
-            🧺 Buy directly from local farmers. Support fresh, support local! 🌾
-          </h1>
+          {/* Info Banner */}
+          <div className="mt-6 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl border border-emerald-200">
+            <p className="text-sm text-emerald-800 text-center font-medium">
+              🧺 Buy directly from local farmers. Support fresh, support local!
+            </p>
+          </div>
+
         </div>
       </div>
     </div>
   );
+
+
 };
 
 export default Loginbuyers;

@@ -71,7 +71,7 @@ const AboutFarmer = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center px-4">
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6 overflow-hidden">
       <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-8 w-full max-w-lg border border-green-200">
 
         <h2 className="text-3xl font-bold text-green-700 mb-6 text-center">

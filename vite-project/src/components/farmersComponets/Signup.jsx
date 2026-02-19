@@ -3,6 +3,7 @@ import axios from "axios";
 import Mycontext from "./Context";
 import { Link } from "react-router-dom";
 import { User, Mail, Phone, MapPin, Calendar, Lock, Sprout, ArrowRight } from 'lucide-react';
+//"http://localhost:9808/api/auth/logout/farmer",
 
 const Signup = () => {
   const { fullName, SetFullname, phoneNumber, SetPhonenumber, address, Setaddress, email, Setemail, password, setPassword, age, Setage } = useContext(Mycontext);
@@ -29,7 +30,8 @@ const Signup = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-12 px-6">
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6 overflow-hidden">
+
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>

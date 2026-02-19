@@ -43,7 +43,7 @@ const Cropselldetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex items-center justify-center px-6 py-12">
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6 overflow-hidden">
       <div className="w-full max-w-2xl">
 
         {/* Header */}

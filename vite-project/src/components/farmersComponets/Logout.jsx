@@ -1,57 +1,78 @@
-import axios from 'axios';
-import React from 'react';
+import axios from "axios";
+import React, { useState } from "react";
+import { LogOut, AlertTriangle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-import { useEffect } from 'react';
 const Logout = () => {
-    useEffect(() => {
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    })
     async function handleClick() {
         try {
-            const response1 = await axios.post(
+            setLoading(true);
+
+            const response = await axios.post(
                 "http://localhost:9808/api/auth/logout/farmer",
                 {},
                 { withCredentials: true }
             );
 
-            if (response1) {
-                alert(response1.data.message);
-                console.log(response1);
-            } else {
-                alert("Server error");
+            if (response.status === 200) {
+                alert(response.data.message);
+                navigate("/"); // redirect after logout
             }
         } catch (e) {
-            if (e.response1 && e.response1.status === 400) {
-                alert(e.response.data.message);
-            }
+            alert("Logout failed. Try again.");
             console.log(e);
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex items-center justify-center px-6">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6">
 
-            <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 border border-white/50 text-center max-w-md w-full">
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-10 max-w-md w-full text-center text-white">
 
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent mb-6">
-                    Farmer Logout
+                {/* Warning Icon */}
+                <div className="flex justify-center mb-6">
+                    <div className="w-16 h-16 rounded-full bg-red-600/20 flex items-center justify-center">
+                        <AlertTriangle className="w-8 h-8 text-red-400" />
+                    </div>
+                </div>
+
+                {/* Title */}
+                <h2 className="text-3xl font-bold mb-3">
+                    Logout Confirmation
                 </h2>
 
-                <p className="text-gray-600 mb-8">
-                    Are you sure you want to logout from your account?
+                <p className="text-gray-300 mb-8">
+                    Are you sure you want to logout from your buyer account?
                 </p>
 
-                <button
-                    onClick={handleClick}
-                    className="w-full bg-gradient-to-r from-red-600 to-rose-600 text-white py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300"
-                >
-                    🌾 Logout Now
-                </button>
+                {/* Buttons */}
+                <div className="flex gap-4 justify-center">
+
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="px-6 py-3 rounded-xl bg-gray-600 hover:bg-gray-700 transition"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        onClick={handleClick}
+                        disabled={loading}
+                        className="px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:shadow-lg hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-60"
+                    >
+                        <LogOut className="w-5 h-5" />
+                        {loading ? "Logging out..." : "Logout"}
+                    </button>
+
+                </div>
 
             </div>
-
         </div>
-
     );
 };
 

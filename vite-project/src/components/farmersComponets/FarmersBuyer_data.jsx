@@ -36,7 +36,7 @@ const FarmersBuyer_data = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-12 px-6">
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
