@@ -9,8 +9,10 @@ import router123 from "./routes/BuyCrop.js";
 import router_chat from "./routes/ChatRoutes.js";
 
 import routerBuy from "./routes/AuthBuyersRouet.js";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
-const url1 = "mongodb://localhost:27017/FramerProject";
+const url1 = process.env.DB_URL;
 
 const port = 9808;
 

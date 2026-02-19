@@ -1,35 +1,28 @@
- import UserSigning from "../models/SigningModel.js";
 import jwt from "jsonwebtoken";
-
-const jwtsecret = "mysecret12311";
+import UserSigning from "../models/SigningModel.js";
 
 const ProtectionMiddleware = async (req, res, next) => {
     try {
-         
         const token = req.cookies.jwt;
-       
 
         if (!token) {
-            return res.status(400).json({ message: "Cookies expired, please log in again" });
+            return res.status(401).json({ message: "Please login again" });
         }
 
-        const verify = jwt.verify(token, jwtsecret);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        if (!verify) {
-            return res.status(400).json({ message: "Unauthenticated" });
+        const user = await UserSigning.findById(decoded.userId);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
         }
 
-        const user1 = await UserSigning.findById(verify.userId);
-
-        if (!user1) {
-            return res.status(400).json({ message: "We can't find the user" });
-        }
-
-        req.user1 = user1;
+        req.user = user;
         next();
-    } catch (e) {
-        console.log(e);
-        return res.status(400).json({ message: "Error occurred" });
+
+    } catch (error) {
+        console.log("JWT ERROR:", error.message);
+        return res.status(401).json({ message: "Invalid or expired token" });
     }
 };
 
