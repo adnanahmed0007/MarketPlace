@@ -7,6 +7,7 @@ const Generatetoken = (userId, res) => {
     if (!process.env.JWT_SECRET) {
         throw new Error("JWT_SECRET is not defined in .env file");
     }
+    console.log("JWT SECRET IN VERIFY:", process.env.JWT_SECRET);
 
     const token = jwt.sign(
         { userId },

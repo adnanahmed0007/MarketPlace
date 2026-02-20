@@ -4,6 +4,7 @@ import UserSigning from "../models/SigningModel.js";
 const ProtectionMiddleware = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
+        console.log("JWT SECRET IN VERIFY:", process.env.JWT_SECRET);
 
         if (!token) {
             return res.status(401).json({ message: "Please login again" });

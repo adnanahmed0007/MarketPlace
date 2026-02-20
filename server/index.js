@@ -1,4 +1,5 @@
-
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express"
 import mongoose from "mongoose";
 import router from "./routes/AuthRoutes.js";
@@ -9,16 +10,21 @@ import router123 from "./routes/BuyCrop.js";
 import router_chat from "./routes/ChatRoutes.js";
 
 import routerBuy from "./routes/AuthBuyersRouet.js";
-import dotenv from "dotenv";
-dotenv.config();
-const app = express();
-const url1 = process.env.DB_URL;
 
-const port = 9808;
+const app = express();
+app.set("trust proxy", 1);
+const url1 = process.env.DB_URL;
+const PORT = process.env.PORT || 9808;
+
+
 
 app.use(cors(
     {
-        origin: 'http://localhost:5173',  // Your React frontend URL
+        origin: [
+            "http://localhost:5173",
+            "https://market-place-66ln.vercel.app/",
+
+        ], // Your React frontend URL
         credentials: true,
 
     }
@@ -33,8 +39,8 @@ app.use("/api/chats", router_chat)
 
 const connect = await mongoose.connect(url1)
     .then(() => {
-        app.listen(port, () => {
-            console.log(` we are on port ${port}`);
+        app.listen(PORT, () => {
+            console.log(` we are on port ${PORT}`);
             console.log(url1)
         })
     })
