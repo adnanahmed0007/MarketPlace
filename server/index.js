@@ -22,7 +22,7 @@ app.use(cors(
     {
         origin: [
             "http://localhost:5173",
-            "https://market-place-66ln.vercel.app/",
+            "https://market-place-66ln.vercel.app",
 
         ], // Your React frontend URL
         credentials: true,
