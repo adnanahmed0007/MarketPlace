@@ -1,59 +1,54 @@
 import Dtamodelbuyer from "../../models/data_bid_buyer.js";
-const cropNameBuyer=async(req,res,next)=>
-{
-     
-    try{
-        const {cropName}=req.body;
-        console.log(cropName);
-        if(cropName)
-        {
-            const findcrop=await Dtamodelbuyer.find({cropName});
-            if(!findcrop)
-            {
+const cropNameBuyer = async (req, res, next) => {
+
+    try {
+        const { cropName } = req.body;
+
+        if (cropName) {
+            const findcrop = await Dtamodelbuyer.find({ cropName });
+            if (!findcrop) {
                 return res
-                .status(400)
-                .json({
-                    message:"we could not find the crop"
-                }
-                )
+                    .status(400)
+                    .json({
+                        message: "we could not find the crop"
+                    }
+                    )
             }
-            else if(findcrop.length==0)
-            {
+            else if (findcrop.length == 0) {
                 return res
-                .status(400)
-                .json({
-                    message:"we could not find the crop"
-                }
-                )
+                    .status(400)
+                    .json({
+                        message: "we could not find the crop"
+                    }
+                    )
 
             }
             return res
-            .status(200)
-            .json({
-                message:"we got thr crop",
-                findcrop
-            })
+                .status(200)
+                .json({
+                    message: "we got thr crop",
+                    findcrop
+                })
 
         }
-        else{
+        else {
             return res
-            .status(400)
-            .json({
-                message:"enter the cropname"
-            })
+                .status(400)
+                .json({
+                    message: "enter the cropname"
+                })
 
         }
-         
+
 
     }
-    catch(e)
-    {
+    catch (e) {
         console.log(e);
         return res
-        .status(400)
-        .json({
-            message:"internal servor error"
-        })
+            .status(400)
+            .json({
+                message: "internal servor error"
+            })
     }
 }
 export default cropNameBuyer;

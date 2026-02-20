@@ -5,7 +5,7 @@ import Generatetoken from "../../utils/GenerateToke.js";
 const Signup = async (req, res) => {
     try {
         const { fullName, age, address, phoneNumber, email, password } = req.body;
-        console.log(req.body)
+
 
 
         if (!fullName || !age || !address || !phoneNumber || !email || !password) {
