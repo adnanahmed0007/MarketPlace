@@ -1,98 +1,134 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import img from "./HD-wallpaper-farmers-agriculture-field-harvesting-farm-farmer-hard-working-workers-cultivation.jpg";
+import axios from "axios";
+import React, { useState } from "react";
+import { Search, Wheat, IndianRupee, Weight, Phone, MapPin } from "lucide-react";
 
 const BuyerBidsCropqisename = () => {
-  const [cropName, setCropname] = useState('');
+  const [cropName, setCropname] = useState("");
   const [cropArray, setCropArray] = useState([]);
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:9808/api/buy/all/cropwise/buyers/bids',
+        "http://localhost:9808/api/buy/all/cropwise/buyers/bids",
         {
           cropName: cropName.trim().toLowerCase(),
         },
         { withCredentials: true }
       );
+
       if (response) {
         alert(response.data.message);
         setCropArray(response.data.findALLBUyercrop);
       }
     } catch (e) {
-      if (e.response && e.response.status == 400) {
-
-        alert(e.response.data.message)
-
-      }
-      else {
-        alert("cookies expires re login ")
+      if (e.response && e.response.status === 400) {
+        alert(e.response.data.message);
+      } else {
+        alert("Cookies expired, please re-login");
       }
       console.log(e);
     }
   }
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url(${img})` }}
-    >
-      <div className="relative z-10 flex flex-col items-center pt-6 px-4">
-        <h1 className="text-2xl font-bold text-gray-700 mb-4 text-center bg-white px-4 py-2 rounded-xl shadow">
-          📊 View Buyer Bids by Crop Name
-        </h1>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black p-6 flex justify-center">
 
-        <div className="bg-white bg-opacity-90 p-4 rounded-xl shadow-md w-full max-w-3xl mb-6">
-          <form onSubmit={handleSubmit} className="flex gap-4 flex-wrap justify-center">
-            <div className="flex flex-col w-full sm:w-[220px]">
-              <label htmlFor="cropName" className="text-sm font-medium text-gray-700 mb-1">
-                Crop Name
-              </label>
+      <div className="w-full max-w-5xl">
+
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
+            View Buyer Bids
+          </h2>
+          <p className="text-gray-400 mt-2">
+            Search crop-wise buyer offers
+          </p>
+        </div>
+
+        {/* Search Card */}
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 border border-white/50 mb-10">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 items-center">
+
+            <div className="relative w-full">
+              <Search className="absolute left-4 top-3.5 w-5 h-5 text-gray-400" />
               <input
-                onChange={(e) => setCropname(e.target.value)}
                 type="text"
-                id="cropName"
-                placeholder="e.g., Wheat"
+                placeholder="Enter crop name (e.g. wheat)"
+                value={cropName}
+                onChange={(e) => setCropname(e.target.value)}
                 required
-                className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-green-400 outline-none"
+                className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
               />
             </div>
+
             <button
               type="submit"
-              className="h-[42px] px-4 bg-yellow-600 hover:bg-yellow-700 text-white text-sm rounded-md font-medium transition self-end"
+              className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-3.5 rounded-xl font-semibold shadow-lg hover:scale-[1.03] transition-all"
             >
-              Submit
+              Search
             </button>
+
           </form>
         </div>
 
+        {/* Results */}
         {cropArray.length > 0 && (
-          <div className="w-full max-w-4xl bg-white bg-opacity-95 shadow-md rounded-lg overflow-x-auto">
-            <table className="w-full border-collapse text-sm">
-              <thead className="bg-green-600 text-white">
-                <tr>
-                  <th className="px-3 py-2 text-left">Crop Name</th>
-                  <th className="px-3 py-2 text-left">Crop Price</th>
-                  <th className="px-3 py-2 text-left">Crop Quantity</th>
-                  <th className="px-3 py-2 text-left">Buyer Phone</th>
-                  <th className="px-3 py-2 text-left">Buyer Location</th>
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-6 border border-white/50 overflow-x-auto">
+
+            <h3 className="text-2xl font-bold text-emerald-700 mb-6">
+              Available Buyer Bids
+            </h3>
+
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b text-gray-700">
+                  <th className="text-left py-3">Crop</th>
+                  <th className="text-left py-3">Price</th>
+                  <th className="text-left py-3">Quantity</th>
+                  <th className="text-left py-3">Phone</th>
+                  <th className="text-left py-3">Location</th>
                 </tr>
               </thead>
+
               <tbody>
                 {cropArray.map((value, index) => (
-                  <tr key={index} className="border-b hover:bg-green-50">
-                    <td className="px-3 py-2 capitalize">{value.cropName}</td>
-                    <td className="px-3 py-2">₹{value.cropPrice}</td>
-                    <td className="px-3 py-2">{value.cropQuantity} kg</td>
-                    <td className="px-3 py-2">{value.phoneNumber}</td>
-                    <td className="px-3 py-2 capitalize">{value.Location_Buyer}</td>
+                  <tr
+                    key={index}
+                    className="border-b hover:bg-emerald-50 transition"
+                  >
+                    <td className="py-3 flex items-center gap-2 capitalize">
+                      <Wheat className="w-4 h-4 text-emerald-600" />
+                      {value.cropName}
+                    </td>
+
+                    <td className="py-3 flex items-center gap-2">
+                      <IndianRupee className="w-4 h-4 text-green-600" />
+                      {value.cropPrice}
+                    </td>
+
+                    <td className="py-3 flex items-center gap-2">
+                      <Weight className="w-4 h-4 text-blue-600" />
+                      {value.cropQuantity} kg
+                    </td>
+
+                    <td className="py-3 flex items-center gap-2">
+                      <Phone className="w-4 h-4 text-purple-600" />
+                      {value.phoneNumber}
+                    </td>
+
+                    <td className="py-3 flex items-center gap-2 capitalize">
+                      <MapPin className="w-4 h-4 text-red-500" />
+                      {value.Location_Buyer}
+                    </td>
                   </tr>
                 ))}
               </tbody>
+
             </table>
           </div>
         )}
+
       </div>
     </div>
   );
