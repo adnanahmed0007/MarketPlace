@@ -6,7 +6,7 @@ const Signup = async (req, res) => {
     try {
         const { fullName, address, age, email, phoneNumber, password } = req.body;
 
-        console.log("Incoming Data:", req.body);
+
 
         if (!fullName || !address || !age || !email || !phoneNumber || !password) {
             return res.status(400).json({
