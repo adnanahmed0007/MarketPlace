@@ -37,7 +37,7 @@ const Dta_Cropgetall = () => {
   async function handleDelete(id) {
     try {
       const response = await axios.delete(
-        `http://localhost:9808/api/sell/deletecrop/${id}`,
+        `https://marketplace-2-ywmy.onrender.com/api/sell/deletecrop/${id}`,
         { withCredentials: true }
       );
 
