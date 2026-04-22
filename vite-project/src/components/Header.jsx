@@ -41,7 +41,7 @@ const Header = () => {
     { to: "/buyerallbisds", label: "Your Bids" },
     { to: "/allthebuyersBids", label: "All Bids" },
     { to: "/buyerbidscropwise", label: "Cropwise Bids" },
-    { to: "/all/chats/buyer", label: "Messages" },
+
     { to: "/buyerlogout", label: "Logout" },
   ];
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Package, Weight, MapPin, Phone, IndianRupee, Search, User } from 'lucide-react';
 
-
 const Buylocationquantity = () => {
   const [cropName, setCropName] = useState("");
   const [cropQuantity, setCropQuantity] = useState("");
@@ -64,7 +63,6 @@ const Buylocationquantity = () => {
         <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 mb-10 border border-white/50">
           <form onSubmit={handleSubmit} className="grid md:grid-cols-3 gap-5">
 
-            {/* Crop Name */}
             <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <Package className="w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
@@ -78,7 +76,6 @@ const Buylocationquantity = () => {
               />
             </div>
 
-            {/* Quantity */}
             <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <Weight className="w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
@@ -93,7 +90,6 @@ const Buylocationquantity = () => {
               />
             </div>
 
-            {/* Location */}
             <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <MapPin className="w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
@@ -107,7 +103,6 @@ const Buylocationquantity = () => {
               />
             </div>
 
-            {/* Submit */}
             <div className="md:col-span-3">
               <button
                 type="submit"
@@ -124,7 +119,6 @@ const Buylocationquantity = () => {
         {/* Results Table */}
         {array1.length > 0 ? (
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl overflow-hidden border border-white/50">
-
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
@@ -148,24 +142,32 @@ const Buylocationquantity = () => {
                         {value.cropName}
                       </td>
 
-                      <td className="px-6 py-4 flex items-center gap-2 text-gray-700">
-                        <MapPin className="w-4 h-4 text-blue-600" />
-                        {value.Pickup_Location}
+                      <td className="px-6 py-4 text-gray-700">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-blue-600" />
+                          {value.Pickup_Location}
+                        </div>
                       </td>
 
-                      <td className="px-6 py-4 flex items-center gap-2 text-gray-700">
-                        <IndianRupee className="w-4 h-4 text-emerald-600" />
-                        ₹{value.cropPrice}
+                      <td className="px-6 py-4 text-gray-700">
+                        <div className="flex items-center gap-2">
+                          <IndianRupee className="w-4 h-4 text-emerald-600" />
+                          ₹{value.cropPrice}
+                        </div>
                       </td>
 
-                      <td className="px-6 py-4 flex items-center gap-2 text-gray-700">
-                        <Weight className="w-4 h-4 text-teal-600" />
-                        {value.cropQuantity} kg
+                      <td className="px-6 py-4 text-gray-700">
+                        <div className="flex items-center gap-2">
+                          <Weight className="w-4 h-4 text-teal-600" />
+                          {value.cropQuantity} kg
+                        </div>
                       </td>
 
-                      <td className="px-6 py-4 flex items-center gap-2 text-gray-700">
-                        <Phone className="w-4 h-4 text-cyan-600" />
-                        {value.phoneNumber}
+                      <td className="px-6 py-4 text-gray-700">
+                        <div className="flex items-center gap-2">
+                          <Phone className="w-4 h-4 text-cyan-600" />
+                          {value.phoneNumber}
+                        </div>
                       </td>
 
                       <td className="px-6 py-4">
@@ -181,17 +183,12 @@ const Buylocationquantity = () => {
                 </tbody>
               </table>
             </div>
-
           </div>
         ) : (
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 text-center border border-white/50">
             <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-gray-700 mb-2">
-              No Crops Found
-            </h3>
-            <p className="text-gray-500">
-              Try searching with different inputs
-            </p>
+            <h3 className="text-2xl font-bold text-gray-700 mb-2">No Crops Found</h3>
+            <p className="text-gray-500">Try searching with different inputs</p>
           </div>
         )}
 
@@ -231,7 +228,6 @@ const Buylocationquantity = () => {
       </div>
     </div>
   );
-
 };
 
 export default Buylocationquantity;

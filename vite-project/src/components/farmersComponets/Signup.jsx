@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import Mycontext from "./Context";
 import { Link } from "react-router-dom";
-import { User, Mail, Phone, MapPin, Calendar, Lock, Sprout, ArrowRight } from 'lucide-react';
-//"http://localhost:9808/api/auth/logout/farmer",
+import { User, Mail, Phone, MapPin, Calendar, Lock, Sprout, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+
 
 const Signup = () => {
   const { fullName, SetFullname, phoneNumber, SetPhonenumber, address, Setaddress, email, Setemail, password, setPassword, age, Setage } = useContext(Mycontext);
+  const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -19,8 +22,9 @@ const Signup = () => {
         );
 
         if (response.data) {
-          console.log(response.data);
-          alert("Signup successful! Please login.");
+
+          alert("Signup successful!");
+          navigate("/");
         }
       }
     } catch (e) {
@@ -132,12 +136,19 @@ const Signup = () => {
                 <Lock className="w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
               </div>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Create Password"
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all duration-300 text-gray-800 placeholder-gray-400"
+                className="w-full pl-12 pr-12 py-3.5 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all duration-300 text-gray-800 placeholder-gray-400"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-emerald-600 transition-colors"
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
             </div>
 
             {/* Submit Button */}

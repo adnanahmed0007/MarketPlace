@@ -93,34 +93,43 @@ const BuyerBidsCropqisename = () => {
 
               <tbody>
                 {cropArray.map((value, index) => (
-                  <tr
-                    key={index}
-                    className="border-b hover:bg-emerald-50 transition"
-                  >
-                    <td className="py-3 flex items-center gap-2 capitalize">
-                      <Wheat className="w-4 h-4 text-emerald-600" />
-                      {value.cropName}
+                  <tr key={index} className="border-b hover:bg-emerald-50 transition">
+
+                    <td className="py-3 capitalize">
+                      <div className="flex items-center gap-2">
+                        <Wheat className="w-4 h-4 text-emerald-600" />
+                        {value.cropName}
+                      </div>
                     </td>
 
-                    <td className="py-3 flex items-center gap-2">
-                      <IndianRupee className="w-4 h-4 text-green-600" />
-                      {value.cropPrice}
+                    <td className="py-3">
+                      <div className="flex items-center gap-2">
+                        <IndianRupee className="w-4 h-4 text-green-600" />
+                        {value.cropPrice}
+                      </div>
                     </td>
 
-                    <td className="py-3 flex items-center gap-2">
-                      <Weight className="w-4 h-4 text-blue-600" />
-                      {value.cropQuantity} kg
+                    <td className="py-3">
+                      <div className="flex items-center gap-2">
+                        <Weight className="w-4 h-4 text-blue-600" />
+                        {value.cropQuantity} kg
+                      </div>
                     </td>
 
-                    <td className="py-3 flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-purple-600" />
-                      {value.phoneNumber}
+                    <td className="py-3">
+                      <div className="flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-purple-600" />
+                        {value.phoneNumber}
+                      </div>
                     </td>
 
-                    <td className="py-3 flex items-center gap-2 capitalize">
-                      <MapPin className="w-4 h-4 text-red-500" />
-                      {value.Location_Buyer}
+                    <td className="py-3 capitalize">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4 text-red-500" />
+                        {value.Location_Buyer}
+                      </div>
                     </td>
+
                   </tr>
                 ))}
               </tbody>

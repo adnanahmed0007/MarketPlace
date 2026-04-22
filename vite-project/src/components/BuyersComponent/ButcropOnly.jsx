@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 
 import { Package, MapPin, Phone, IndianRupee, Weight, Search, User, Mail, Home, Calendar, MessageCircle } from 'lucide-react';
 
@@ -9,7 +9,7 @@ const ButcropOnly = () => {
   const [cropName, setCropname] = useState('');
   const [arraya, setArray] = useState([]);
   const [farmerdetail, setFarmerdetail] = useState("");
-  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -45,11 +45,6 @@ const ButcropOnly = () => {
     } catch (e) {
       console.log(e);
     }
-  }
-  async function handlechat(id) {
-    navigate(`/chat/${id}`)
-
-
   }
 
   return (
@@ -124,24 +119,32 @@ const ButcropOnly = () => {
                         {value.cropName}
                       </td>
 
-                      <td className="px-6 py-4 text-gray-700 flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-blue-600" />
-                        {value.Pickup_Location}
+                      <td className="px-6 py-4 text-gray-700">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-blue-600" />
+                          {value.Pickup_Location}
+                        </div>
                       </td>
 
-                      <td className="px-6 py-4 text-gray-700 flex items-center gap-2">
-                        <IndianRupee className="w-4 h-4 text-emerald-600" />
-                        ₹{value.cropPrice}
+                      <td className="px-6 py-4 text-gray-700">
+                        <div className="flex items-center gap-2">
+                          <IndianRupee className="w-4 h-4 text-emerald-600" />
+                          ₹{value.cropPrice}
+                        </div>
                       </td>
 
-                      <td className="px-6 py-4 text-gray-700 flex items-center gap-2">
-                        <Weight className="w-4 h-4 text-teal-600" />
-                        {value.cropQuantity} kg
+                      <td className="px-6 py-4 text-gray-700">
+                        <div className="flex items-center gap-2">
+                          <Weight className="w-4 h-4 text-teal-600" />
+                          {value.cropQuantity} kg
+                        </div>
                       </td>
 
-                      <td className="px-6 py-4 text-gray-700 flex items-center gap-2">
-                        <Phone className="w-4 h-4 text-cyan-600" />
-                        {value.phoneNumber}
+                      <td className="px-6 py-4 text-gray-700">
+                        <div className="flex items-center gap-2">
+                          <Phone className="w-4 h-4 text-cyan-600" />
+                          {value.phoneNumber}
+                        </div>
                       </td>
 
                       <td className="px-6 py-4 space-x-2">
@@ -150,14 +153,6 @@ const ButcropOnly = () => {
                           className="px-4 py-2 bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
                         >
                           View Farmer
-                        </button>
-
-                        <button
-                          onClick={() => handlechat(value.User_Id)}
-                          className="px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-1"
-                        >
-                          <MessageCircle className="w-4 h-4" />
-                          Chat
                         </button>
                       </td>
                     </tr>
