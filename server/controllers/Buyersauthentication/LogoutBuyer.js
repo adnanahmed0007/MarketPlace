@@ -3,9 +3,9 @@ const LogoutBuyer = async (req, res) => {
     res.cookie("jwt", "", {
       maxAge: 0,
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production"
-    })
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: process.env.NODE_ENV === "production",
+    });
     return res
       .status(200)
       .json({
