@@ -1,39 +1,35 @@
 import Dtamodelbuyer from "../../models/data_bid_buyer.js";
-const AllBidsBuyerall=async(req,res,next)=>
-{
-    try{
-        const user=req.user;
-        const UserId=user._id;
-        
-        const response=await Dtamodelbuyer.find({User_Id:UserId});
-         if(response.length==0)
-         {
+const AllBidsBuyerall = async (req, res, next) => {
+    try {
+        const user = req.user;
+        const UserId = user._id;
+
+        const response = await Dtamodelbuyer.find({ User_Id: UserId });
+        if (response.length == 0) {
             return res
-            .status(400)
-            .json({
-                message:"there is no bid"
-            })
-         }
-          else if(!response)
-          {
+                .status(400)
+                .json({
+                    message: "there is no bid"
+                })
+        }
+        else if (!response) {
             return res
-            .status(400)
+                .status(400)
+                .json({
+                    message: "something went wrogn"
+                })
+        }
+        return res
+            .status(200)
             .json({
-                message:"something went wrogn"
+                mesaage: "go all the bids",
+                response
             })
-          }
-          return res
-          .status(200)
-          .json({
-            mesaage:"go all the bids",
-            response
-          })
-    
+
     }
-    catch(e)
-    {
-        console.log(e)
+    catch (e) {
+
     }
-    
+
 }
 export default AllBidsBuyerall
