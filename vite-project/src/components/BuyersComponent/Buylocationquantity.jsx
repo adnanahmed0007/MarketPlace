@@ -13,7 +13,7 @@ const Buylocationquantity = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:9808/api/buy/crop/place/quantity/location",
+        "https://marketplace-2-ywmy.onrender.com/api/buy/crop/place/quantity/location",
         {
           cropName: cropName.trim().toLowerCase(),
           cropQuantity: cropQuantity.trim().toLowerCase(),

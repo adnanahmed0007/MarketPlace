@@ -14,7 +14,7 @@ const BuyerLocationpricecropname = () => {
     try {
       if (cropName && cropQuantity && Location_Buyer) {
         const response = await axios.post(
-          'http://localhost:9808/api/sell/farmer/data/cropname/cropQunatuty/place',
+          'https://marketplace-2-ywmy.onrender.com/api/sell/farmer/data/cropname/cropQunatuty/place',
           { cropName, cropQuantity, Location_Buyer },
           { withCredentials: true }
         );

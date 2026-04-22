@@ -22,7 +22,7 @@ const Alldata = () => {
       setFetched(true);
 
       const response = await axios.get(
-        "http://localhost:9808/api/sell/selldatashow",
+        "https://marketplace-2-ywmy.onrender.com/api/sell/selldatashow",
         { withCredentials: true }
       );
 

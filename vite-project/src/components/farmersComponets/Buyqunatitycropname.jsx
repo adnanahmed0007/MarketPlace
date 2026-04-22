@@ -23,7 +23,7 @@ const Buyqunatitycropname = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:9808/api/sell/farmer/data/cropname/cropQunatuty',
+        'https://marketplace-2-ywmy.onrender.com/api/sell/farmer/data/cropname/cropQunatuty',
         { cropName, cropQuantity },
         { withCredentials: true }
       );

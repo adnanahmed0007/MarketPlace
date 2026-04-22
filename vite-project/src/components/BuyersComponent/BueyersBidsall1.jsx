@@ -19,7 +19,7 @@ const BueyersBidsall1 = () => {
       setLoading(true);
 
       const response = await axios.get(
-        "http://localhost:9808/api/buy/all/bids/buyer",
+        "https://marketplace-2-ywmy.onrender.com/api/buy/all/bids/buyer",
         { withCredentials: true }
       );
 

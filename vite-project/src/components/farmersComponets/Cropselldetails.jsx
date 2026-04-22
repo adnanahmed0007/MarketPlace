@@ -19,7 +19,7 @@ const Cropselldetails = () => {
     try {
       if (cropName && cropPrice && cropQuantity && Pickup_Location) {
         const response = await axios.post(
-          "http://localhost:9808/api/sell/datasell",
+          "https://marketplace-2-ywmy.onrender.com/api/sell/datasell",
           {
             cropName: cropName.trim().toLowerCase(),
             cropQuantity: cropQuantity.trim(),

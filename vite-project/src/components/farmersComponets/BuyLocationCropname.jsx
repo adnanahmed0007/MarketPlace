@@ -23,7 +23,7 @@ const BuyLocationCropname = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:9808/api/sell/farmer/data/cropname/pickuplocation',
+        'https://marketplace-2-ywmy.onrender.com/api/sell/farmer/data/cropname/pickuplocation',
         { cropName, Location_Buyer },
         { withCredentials: true }
       );

@@ -12,7 +12,7 @@ const Loginbuyers = () => {
     e.preventDefault();
     try {
       const send_data = await axios.post(
-        "http://localhost:9808/api/auth/buy/buyer/login",
+        "https://marketplace-2-ywmy.onrender.com/api/auth/buy/buyer/login",
         { email, password },
         { withCredentials: true }
       );

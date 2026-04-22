@@ -12,7 +12,7 @@ const LogoutBuyer = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:9808/api/auth/buy/buyer/logout",
+        "https://marketplace-2-ywmy.onrender.com/api/auth/buy/buyer/logout",
         {},
         { withCredentials: true }
       );

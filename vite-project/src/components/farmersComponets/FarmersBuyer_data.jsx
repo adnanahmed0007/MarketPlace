@@ -15,7 +15,7 @@ const FarmersBuyer_data = () => {
   async function handleSubmit() {
     try {
       const response = await axios.get(
-        "http://localhost:9808/api/sell/farmer/data",
+        "https://marketplace-2-ywmy.onrender.com/api/sell/farmer/data",
         { withCredentials: true }
       );
 

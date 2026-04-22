@@ -26,7 +26,7 @@ const GetCrop = () => {
       setSearched(true);
 
       const response = await axios.post(
-        "http://localhost:9808/api/sell/dtacrop",
+        "https://marketplace-2-ywmy.onrender.com/api/sell/dtacrop",
         { cropName: cropName.trim().toLowerCase() },
         { withCredentials: true }
       );

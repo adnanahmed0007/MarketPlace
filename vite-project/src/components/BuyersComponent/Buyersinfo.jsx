@@ -20,7 +20,7 @@ const Buyersinfo = () => {
         setLoading(true);
 
         const response = await axios.get(
-          "http://localhost:9808/api/buy/buyer/info",
+          "https://marketplace-2-ywmy.onrender.com/api/buy/buyer/info",
           { withCredentials: true }
         );
 

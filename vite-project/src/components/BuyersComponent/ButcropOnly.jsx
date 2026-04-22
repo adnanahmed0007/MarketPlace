@@ -14,7 +14,7 @@ const ButcropOnly = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:9808/api/buy/crop',
+        'https://marketplace-2-ywmy.onrender.com/api/buy/crop',
         {
           cropName: cropName.trim().toLowerCase(),
         },
@@ -39,7 +39,7 @@ const ButcropOnly = () => {
 
   async function handleClick1(id) {
     try {
-      const detail = await axios.post(`http://localhost:9808/api/buy/detailsfarmer/${id}`);
+      const detail = await axios.post(`https://marketplace-2-ywmy.onrender.com/api/buy/detailsfarmer/${id}`);
       console.log(detail.data.findfarmer);
       setFarmerdetail(detail.data.findfarmer);
     } catch (e) {

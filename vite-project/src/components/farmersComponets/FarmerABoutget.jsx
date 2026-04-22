@@ -12,7 +12,7 @@ const FarmerAboutGet = () => {
         setLoading(true);
 
         const response = await axios.get(
-          "http://localhost:9808/api/sell/farmer/details/about",
+          "https://marketplace-2-ywmy.onrender.com/api/sell/farmer/details/about",
           { withCredentials: true }
         );
 

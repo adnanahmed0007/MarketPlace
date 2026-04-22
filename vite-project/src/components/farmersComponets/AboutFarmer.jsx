@@ -30,7 +30,7 @@ const AboutFarmer = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:9808/api/sell/farmer/about/details",
+        "https://marketplace-2-ywmy.onrender.com/api/sell/farmer/about/details",
         formData,
         {
           withCredentials: true,

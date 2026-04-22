@@ -23,7 +23,7 @@ const UpdateCrop = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:9808/api/sell/crop/update",
+        "https://marketplace-2-ywmy.onrender.com/api/sell/crop/update",
         {
           cropName: cropName.trim().toLowerCase(),
           cropQuantity,
