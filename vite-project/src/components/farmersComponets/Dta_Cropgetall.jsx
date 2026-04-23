@@ -19,7 +19,7 @@ const Dta_Cropgetall = () => {
       setLoading(true);
 
       const response = await axios.get(
-        "https://marketplace-2-ywmy.onrender.com/api/sell/datagett",
+        "https://marketplace-7rk5.onrender.com/api/sell/datagett",
         { withCredentials: true }
       );
 
@@ -37,7 +37,7 @@ const Dta_Cropgetall = () => {
   async function handleDelete(id) {
     try {
       const response = await axios.delete(
-        `https://marketplace-2-ywmy.onrender.com/api/sell/deletecrop/${id}`,
+        `https://marketplace-7rk5.onrender.com/api/sell/deletecrop/${id}`,
         { withCredentials: true }
       );
 

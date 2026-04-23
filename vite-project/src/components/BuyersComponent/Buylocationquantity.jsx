@@ -13,7 +13,7 @@ const Buylocationquantity = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://marketplace-2-ywmy.onrender.com/api/buy/crop/place/quantity/location",
+        "https://marketplace-7rk5.onrender.com/api/buy/crop/place/quantity/location",
         {
           cropName: cropName.trim().toLowerCase(),
           cropQuantity: cropQuantity.trim().toLowerCase(),
@@ -35,7 +35,7 @@ const Buylocationquantity = () => {
 
   async function handleClick1(id) {
     try {
-      const response = await axios.post(`http://localhost:9808/api/buy/detailsfarmer/${id}`);
+      const response = await axios.post(`https://marketplace-7rk5.onrender.com/api/buy/detailsfarmer/${id}`);
       if (response) {
         setFarmerdetail(response.data.findfarmer);
       }

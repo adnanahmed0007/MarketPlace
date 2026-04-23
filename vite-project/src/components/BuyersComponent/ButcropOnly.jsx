@@ -14,7 +14,7 @@ const ButcropOnly = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://marketplace-2-ywmy.onrender.com/api/buy/crop',
+        'https://marketplace-7rk5.onrender.com/api/buy/crop',
         {
           cropName: cropName.trim().toLowerCase(),
         },

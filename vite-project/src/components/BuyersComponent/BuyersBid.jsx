@@ -22,7 +22,7 @@ const BuyersBid = () => {
     e.preventDefault();
     try {
       if (cropName && cropQuantity && Location_Buyer && cropPrice) {
-        const response = await axios.post("https://marketplace-2-ywmy.onrender.com/api/buy/buyer/bid", {
+        const response = await axios.post("https://marketplace-7rk5.onrender.com/api/buy/buyer/bid", {
           cropName, cropPrice, cropQuantity, Location_Buyer
         }, { withCredentials: true });
         if (response && response.status == 200) {

@@ -14,7 +14,7 @@ const AllBuyersBIdsALL = () => {
 
   async function handleClick() {
     try {
-      const response = await axios.get("https://marketplace-2-ywmy.onrender.com/api/buy/all/buyer/bidsall/all/buyer", {
+      const response = await axios.get("https://marketplace-7rk5.onrender.com/api/buy/all/buyer/bidsall/all/buyer", {
         withCredentials: true,
       });
       if (response && response.status === 200) {

@@ -12,7 +12,7 @@ const Login = () => {
     try {
       if (email && password) {
         const response = await axios.post(
-          "http://localhost:9808/api/auth/login",
+          "https://marketplace-7rk5.onrender.com/api/auth/login",
           { email, password },
           { withCredentials: true }
         );

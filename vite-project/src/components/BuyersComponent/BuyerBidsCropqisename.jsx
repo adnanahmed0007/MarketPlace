@@ -10,7 +10,7 @@ const BuyerBidsCropqisename = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://marketplace-2-ywmy.onrender.com/api/buy/all/cropwise/buyers/bids",
+        "https://marketplace-7rk5.onrender.com/api/buy/all/cropwise/buyers/bids",
         {
           cropName: cropName.trim().toLowerCase(),
         },

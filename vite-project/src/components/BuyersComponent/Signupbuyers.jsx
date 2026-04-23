@@ -30,7 +30,7 @@ const Signupbuyers = () => {
     try {
       if (email && password && age && phoneNumber && fullName && address) {
         const res = await axios.post(
-          "https://marketplace-2-ywmy.onrender.com/api/auth/buy/buyer/signup",
+          "https://marketplace-7rk5.onrender.com/api/auth/buy/buyer/signup",
           {
             fullName,
             phoneNumber,

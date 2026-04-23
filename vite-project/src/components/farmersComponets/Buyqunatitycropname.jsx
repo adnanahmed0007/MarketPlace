@@ -23,7 +23,7 @@ const Buyqunatitycropname = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://marketplace-2-ywmy.onrender.com/api/sell/farmer/data/cropname/cropQunatuty',
+        'https://marketplace-7rk5.onrender.com/api/sell/farmer/data/cropname/cropQunatuty',
         { cropName, cropQuantity },
         { withCredentials: true }
       );
@@ -42,7 +42,7 @@ const Buyqunatitycropname = () => {
   async function handleClick(userId) {
     try {
       const response = await axios.post(
-        `http://localhost:9808/api/sell/farmer/data/details/buyers/${userId}`,
+        `https://marketplace-7rk5.onrender.com/api/sell/farmer/data/details/buyers/${userId}`,
         {},
         { withCredentials: true }
       );

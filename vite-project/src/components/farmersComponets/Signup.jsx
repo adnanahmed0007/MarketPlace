@@ -16,7 +16,7 @@ const Signup = () => {
     try {
       if (fullName && email && password && phoneNumber && address && age) {
         const response = await axios.post(
-          "https://marketplace-2-ywmy.onrender.com/api/auth/sign",
+          "https://marketplace-7rk5.onrender.com/api/auth/sign",
           { fullName, email, password, phoneNumber, address, age },
           { withCredentials: true }
         );

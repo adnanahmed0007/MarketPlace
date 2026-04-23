@@ -21,7 +21,7 @@ const Info = () => {
         setLoading(true);
 
         const response = await axios.get(
-          "https://marketplace-2-ywmy.onrender.com/api/sell/detailsuser",
+          "https://marketplace-7rk5.onrender.com/api/sell/detailsuser",
           { withCredentials: true }
         );
 
