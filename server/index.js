@@ -22,7 +22,7 @@ app.use(cors(
     {
         origin: [
             "http://localhost:5173",
-            "https://market-place-66ln.vercel.app/",
+            "https://market-place-66ln.vercel.app",
 
         ], // Your React frontend URL
         credentials: true,
@@ -37,7 +37,7 @@ app.use("/api/buy", router123)
 app.use("/api/auth/buy", routerBuy)
 app.use("/api/chats", router_chat)
 
-const connect = await mongoose.connect(url1)
+const connect = await mongoose.connect(`${url1}`)
     .then(() => {
         app.listen(PORT, () => {
             console.log(` we are on port ${PORT}`);
